@@ -32,8 +32,7 @@ class Robot():
         pass
 
     def charge(self, battery_level):
-        
-        pass
+        self.setBatteryLevel(battery_level)
 
 robot = Robot()
 
