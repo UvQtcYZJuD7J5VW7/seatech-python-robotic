@@ -4,7 +4,7 @@ class Robot():
     """
     Adrien DELEPIERE
     Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
-    Rev-B (06/01/2023) : Méthodes de charge, start&stop
+    Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
     """
 
     # Enum
@@ -34,16 +34,19 @@ class Robot():
         return self.__current_speed
 
     def setCurrentSpeed(self, speed):
-        if(speed > 0):
-            self.__current_speed = speed
+        if(self.getState() != self.__states[0]):
+            if(speed >= 0):
+                self.__current_speed = speed
+            else:
+                raise Exception("Requested speed negative")
         else:
-            raise Exception("Requested speed negative")
+            raise Exception("Robot already shutdown")
 
     def getBatteryLevel(self):
         return self.__battery_level
 
     def setBatteryLevel(self, battery_level):
-        if(battery_level >= 0 or battery_level < 100):
+        if(battery_level >= 0 and battery_level < 100):
             self.__battery_level = battery_level
         else:
             raise Exception("Requested battery level negative")
@@ -55,7 +58,7 @@ class Robot():
     def __str__(self) -> str:
         pass
 
-    def __str__(self) -> str:
+    def __str__(self):
         return str({
             "name": self.getName(),
             "state": self.getState(),
@@ -64,34 +67,46 @@ class Robot():
         })
 
     def start(self):
-        self.__states = self.__states[1]
+        self.__state = self.__states[1]
 
     def shutdown(self):
-        self.__states = self.__states[0]
+        self.__state = self.__states[0]
 
     def charge(self, battery_level):
-        currentBatteryLevel = self.getBatteryLevel()
-        if(battery_level > currentBatteryLevel):
-            if(currentBatteryLevel == 0):
-                currentBatteryLevel += 1
-            iter = round(battery_level/currentBatteryLevel)
-            for i in range(iter):
-                sleep(1)
-                j = currentBatteryLevel + battery_level/iter*i
+        if(battery_level > self.getBatteryLevel()):
+            poweringTime = round( (battery_level - self.getBatteryLevel())/10 )
+            for i in range(battery_level - self.getBatteryLevel()):
+                sleep(1/(battery_level - self.getBatteryLevel()))
+                j = self.getBatteryLevel() + 1
                 self.setBatteryLevel(j)
                 print("Charge : %d" %j + " %")
         else:
             raise Exception("Niveau de charge négatif")
 
+    def stop(self):
+        self.setCurrentSpeed(0)
+
 robot = Robot()
 
-print(Robot)
-
-print("Niveau de charge %d : " %robot.getBatteryLevel() + " %")
+print(robot)
 
 try:
     robot.charge(50)
 except Exception as e:
     print(e)
 
-print(robot.getBatteryLevel())
+try:
+    robot.setCurrentSpeed(15)
+except Exception as e:
+    print(e)
+
+robot.getCurrentSpeed()
+
+print(robot)
+
+try:
+    robot.stop()
+except Exception as e:
+    print(e)
+
+print(robot)
