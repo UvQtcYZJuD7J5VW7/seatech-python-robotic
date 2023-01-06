@@ -6,4 +6,5 @@ Le robot python ne permet strictement rien.
 
 ## Quick Start
 La méthode `setCurrentSpeed` permet le déplacement du robot. Cela entraine un déchargement de la batterie qui peut être rechargé avec la méthode `setBatteryLevel`.
+
 Le chargement de la batterie entraîne l'arrêt du robot.
