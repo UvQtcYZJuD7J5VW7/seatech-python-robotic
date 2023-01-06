@@ -29,8 +29,17 @@ class Robot():
         if(battery_level >= 0 or battery_level < 100):
             self.__battery_level = battery_level
         else:
-            raise Exception("Le niveau de charge ne peut être négatif")
+            raise Exception("Requested battery level negative")
     
+    def getCurrentSpeed(self):
+        return self.__current_speed
+
+    def setCurrentSpeed(self, speed):
+        if(speed > 0):
+            self.__current_speed = speed
+        else:
+            raise Exception("Requested speed negative")
+
     # Methods
     def start(self):
         pass
@@ -48,14 +57,13 @@ class Robot():
                 sleep(1)
                 j = currentBatteryLevel + battery_level/iter*i
                 self.setBatteryLevel(j)
-                print("Charge : %d" %j)
+                print("Charge : %d" %j + " %")
         else:
             raise Exception("Niveau de charge négatif")
 
 robot = Robot()
 
-print(robot.getBatteryLevel())
-
+print("Niveau de charge %d : " %robot.getBatteryLevel() + " %")
 
 try:
     robot.charge(50)
