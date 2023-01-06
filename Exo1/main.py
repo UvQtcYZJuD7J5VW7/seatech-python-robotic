@@ -7,18 +7,19 @@ from time import sleep
 
 class Robot():
     """Documentation"""
-    
+
+    __slot__ = (
+        "__states",
+        "__name",
+        "__current_speed",
+        "__battery_level",
+        "__state"
+    )
+
     # Enum
     __states = ("shutdown", "running")
 
     # Attributes
-    # __slots__ = (
-    #     "__name",
-    #     "__power",
-    #     "__current_speed",
-    #     "__battery_level",
-    #     "__state"
-    # )
     __name = "<unnamed>"
     __current_speed = 0
     __battery_level = 0
