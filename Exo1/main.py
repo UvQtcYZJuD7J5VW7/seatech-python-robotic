@@ -2,7 +2,7 @@ from time import sleep
 
 class Robot():
     """
-    Adrien DELEPIERE
+    Adrien
     Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
     Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
     """
@@ -71,6 +71,7 @@ class Robot():
 
     def shutdown(self):
         self.__state = self.__states[0]
+        self.stop()
 
     def charge(self, battery_level):
         if(battery_level > self.getBatteryLevel()):
