@@ -90,6 +90,8 @@ robot = Robot()
 
 print(robot)
 
+robot.start()
+
 try:
     robot.charge(50)
 except Exception as e:
