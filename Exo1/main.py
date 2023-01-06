@@ -25,7 +25,7 @@ class Robot():
     def setName(self, name:str) -> None:
         self.__name = name
     
-    def getCurrentSpeed(self):
+    def getCurrentSpeed(self) -> int:
         return self.__current_speed
 
     def setCurrentSpeed(self, speed):
