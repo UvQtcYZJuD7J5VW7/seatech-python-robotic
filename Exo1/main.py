@@ -7,6 +7,7 @@ class Robot():
     Rev-B (06/01/2023) : Méthodes de charge, start&stop
     """
 
+    # Enum
     __states = ("shutdown", "running")
 
     # Attributes
@@ -18,9 +19,8 @@ class Robot():
     #     "__state"
     # )
     __name = "<unnamed>"
-    __power = False
     __current_speed = 0
-    __battery_level = 5
+    __battery_level = 0
     __state = __states[0]
 
     # Accessors
@@ -29,15 +29,6 @@ class Robot():
 
     def setName(self, name):
         self.__name = name
-
-    def getBatteryLevel(self):
-        return self.__battery_level
-
-    def setBatteryLevel(self, battery_level):
-        if(battery_level >= 0 or battery_level < 100):
-            self.__battery_level = battery_level
-        else:
-            raise Exception("Requested battery level negative")
     
     def getCurrentSpeed(self):
         return self.__current_speed
@@ -48,7 +39,30 @@ class Robot():
         else:
             raise Exception("Requested speed negative")
 
+    def getBatteryLevel(self):
+        return self.__battery_level
+
+    def setBatteryLevel(self, battery_level):
+        if(battery_level >= 0 or battery_level < 100):
+            self.__battery_level = battery_level
+        else:
+            raise Exception("Requested battery level negative")
+
+    def getState(self):
+        return self.__state
+
     # Methods
+    def __str__(self) -> str:
+        pass
+
+    def __str__(self) -> str:
+        return str({
+            "name": self.getName(),
+            "state": self.getState(),
+            "batteryLevel": self.getBatteryLevel(),
+            "speed": self.getCurrentSpeed()
+        })
+
     def start(self):
         self.__states = self.__states[1]
 
@@ -70,6 +84,8 @@ class Robot():
             raise Exception("Niveau de charge négatif")
 
 robot = Robot()
+
+print(Robot)
 
 print("Niveau de charge %d : " %robot.getBatteryLevel() + " %")
 
