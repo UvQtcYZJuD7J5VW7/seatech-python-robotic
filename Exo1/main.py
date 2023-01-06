@@ -37,6 +37,10 @@ class Robot():
         if(self.getState() != self.__states[0]):
             if(speed >= 0):
                 self.__current_speed = speed
+                try:
+                    self.setBatteryLevel(self.getBatteryLevel() - round(speed/10))
+                except Exception as e:
+                    self.setBatteryLevel(0)
             else:
                 raise Exception("Requested speed negative")
         else:
@@ -45,7 +49,7 @@ class Robot():
     def getBatteryLevel(self):
         return self.__battery_level
 
-    def setBatteryLevel(self, battery_level):
+    def setBatteryLevel(self, battery_level:int):
         if(battery_level >= 0 and battery_level < 100):
             self.__battery_level = battery_level
         else:
@@ -55,9 +59,6 @@ class Robot():
         return self.__state
 
     # Methods
-    def __str__(self) -> str:
-        pass
-
     def __str__(self):
         return str({
             "name": self.getName(),
@@ -95,9 +96,11 @@ print(robot)
 robot.start()
 
 try:
-    robot.charge(50)
+    robot.charge(80)
 except Exception as e:
     print(e)
+
+print(robot)
 
 try:
     robot.setCurrentSpeed(15)
