@@ -6,9 +6,11 @@ Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
 from time import sleep
 
 class Robot():
-    """Documentation"""
+    """
+    Documentation du robot
+    """
 
-    __slot__ = (
+    __slots__ = (
         "__states",
         "__name",
         "__current_speed",
@@ -16,20 +18,11 @@ class Robot():
         "__state"
     )
 
-    # Enum
-    __states = ("shutdown", "running")
-
-    # Attributes
-    __name = "<unnamed>"
-    __current_speed = 0
-    __battery_level = 0
-    __state = __states[0]
-
     # Accessors
-    def getName(self):
+    def getName(self) -> str:
         return self.__name
 
-    def setName(self, name):
+    def setName(self, name:str) -> None:
         self.__name = name
     
     def getCurrentSpeed(self):
@@ -61,6 +54,13 @@ class Robot():
         return self.__state
 
     # Methods
+    def __init__(self, name="<unnamed>") -> None:
+        self.__name = name
+        self.__states = ("shutdown", "running")
+        self.__battery_level = 0
+        self.__current_speed = 0
+        self.__state = self.__states[0]
+
     def __str__(self):
         return str({
             "name": self.getName(),
@@ -121,3 +121,5 @@ if __name__ == "__main__":
         print(e)
 
     print(robot)
+
+    help(Robot)
