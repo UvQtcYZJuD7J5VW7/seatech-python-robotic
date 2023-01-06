@@ -89,31 +89,33 @@ class Robot():
     def stop(self):
         self.setCurrentSpeed(0)
 
-robot = Robot()
+if __name__ == "__main__":
 
-print(robot)
+    robot = Robot()
 
-robot.start()
+    print(robot)
 
-try:
-    robot.charge(80)
-except Exception as e:
-    print(e)
+    robot.start()
 
-print(robot)
+    try:
+        robot.charge(80)
+    except Exception as e:
+        print(e)
 
-try:
-    robot.setCurrentSpeed(15)
-except Exception as e:
-    print(e)
+    print(robot)
 
-robot.getCurrentSpeed()
+    try:
+        robot.setCurrentSpeed(15)
+    except Exception as e:
+        print(e)
 
-print(robot)
+    robot.getCurrentSpeed()
 
-try:
-    robot.stop()
-except Exception as e:
-    print(e)
+    print(robot)
 
-print(robot)
+    try:
+        robot.stop()
+    except Exception as e:
+        print(e)
+
+    print(robot)
