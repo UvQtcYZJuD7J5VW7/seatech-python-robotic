@@ -1,12 +1,13 @@
+"""
+Adrien
+Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
+Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
+"""
 from time import sleep
 
 class Robot():
-    """
-    Adrien
-    Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
-    Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
-    """
-
+    """Documentation"""
+    
     # Enum
     __states = ("shutdown", "running")
 
