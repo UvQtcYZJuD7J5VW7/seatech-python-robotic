@@ -74,6 +74,7 @@ class Robot():
         self.stop()
 
     def charge(self, battery_level):
+        self.stop()
         if(battery_level > self.getBatteryLevel()):
             poweringTime = round( (battery_level - self.getBatteryLevel())/10 )
             for i in range(battery_level - self.getBatteryLevel()):
