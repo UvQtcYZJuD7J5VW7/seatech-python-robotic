@@ -4,8 +4,10 @@ class Robot():
     """
     Adrien DELEPIERE
     Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
-    Rev-B (06/01/2023) : 
+    Rev-B (06/01/2023) : Méthodes de charge, start&stop
     """
+
+    __states = ("shutdown", "running")
 
     # Attributes
     # __slots__ = (
@@ -13,15 +15,21 @@ class Robot():
     #     "__power",
     #     "__current_speed",
     #     "__battery_level",
-    #     "__states"
+    #     "__state"
     # )
     __name = "<unnamed>"
     __power = False
     __current_speed = 0
     __battery_level = 5
-    __states = ['shutown', 'running']
+    __state = __states[0]
 
     # Accessors
+    def getName(self):
+        return self.__name
+
+    def setName(self, name):
+        self.__name = name
+
     def getBatteryLevel(self):
         return self.__battery_level
 
@@ -42,10 +50,10 @@ class Robot():
 
     # Methods
     def start(self):
-        pass
+        self.__states = self.__states[1]
 
     def shutdown(self):
-        pass
+        self.__states = self.__states[0]
 
     def charge(self, battery_level):
         currentBatteryLevel = self.getBatteryLevel()
