@@ -1,5 +1,5 @@
-from Robot import Robot
-from Human import Human
+from subclass.Robot import Robot
+from subclass.Human import Human
 
 class Cyborg(Robot, Human):
     """
@@ -18,7 +18,7 @@ cyborg = Cyborg('Deux Ex Machina', 'M')
 print(cyborg.getName(), 'sexe', cyborg.sex)
 print('Charging battery...')
 cyborg.start()
-cyborg.charge(10)
+cyborg.charge(80)
 print(cyborg)
 cyborg.feed('banana')
 cyborg.feed(['coca', 'chips', "machin", "truc"])

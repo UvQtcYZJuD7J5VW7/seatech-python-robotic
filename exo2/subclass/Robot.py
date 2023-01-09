@@ -3,7 +3,6 @@ Adrien
 Rev-A (05/01/2023) : Attributs, accesseurs et méthodes
 Rev-B (06/01/2023) : Méthodes de charge, start&stop, Exceptions
 """
-
 from time import sleep
 
 class Robot():
@@ -72,6 +71,7 @@ class Robot():
 
     def start(self):
         self.__state = self.__states[1]
+        print("Robot started")
 
     def shutdown(self):
         self.__state = self.__states[0]
