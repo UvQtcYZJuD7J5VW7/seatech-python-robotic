@@ -6,7 +6,7 @@ class Cyborg(Robot, Human):
     Documentation du cyborg
     """
 
-    def __init__(self, name, sexe):   
+    def __init__(self, name, sexe):
         Robot.__init__(self, name)
         Human.__init__(self, sexe)
 
