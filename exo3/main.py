@@ -2,55 +2,70 @@ from abc import ABCMeta, abstractmethod
 
 class UnmannedVehicle(metaclass=ABCMeta):
     """
-    Abstract class, must be redifined
+    Classe abstraite, redéfinir les méthodes suivantes :
+    |   startup(self) -> bool
+    |   stop(self) -> bool
     """
+
+    # Attributes
+    __state = False
 
     # Methods
     @property
-    @abstractmethod
-    def getState() -> bool:
+    def getState(self) -> bool:
         """
-        False = Shutdown
-        True = Started
+        Renvoie False (défaut) si UnmannedVehicle arreté
+        Renvoie True si UnmannedVehicle démarré
+        """
+        return self.__state
+
+    @abstractmethod
+    def startup(self) -> bool:
+        """
+        Démarrer le véhicule
+        Pas d'arguments
+        Renvoie True si UnmannedVehicle a démarré
         """
         pass
 
     @abstractmethod
-    def startup() -> bool:
-        """
-        Start the vehicle
-        No args, return True if start successful
-        """
-        pass
-
-    @abstractmethod
-    def stop() -> bool:
-        """
-        Stop the vehicle
-        No args, return True if stop successful
-        """
+    def stop(self):
         pass
 
 class UAV(UnmannedVehicle):
-    """Unmanned Aerial Vehicle"""
+    def startup(self):
+        print("Pompe électrique ON")
+        print("Plein riche")
+        print("Démarreur 5 sec")
+        print("Moteur démarré")
 
-    pass
+    def stop(self):
+        print("Régime 1200 trs/min")
+        print("Plein pauvre")
+        print("Moteur arrrêté")
 
 class UUV(UnmannedVehicle):
-    """Unmanned Undersea Vehicle"""
      # Attributes
     __seaSpeed = 0
     
     # Methods
-    def pitch(pitch:int) -> None:
-        if(pitch < 0):
-            print("UUV en descente")
-        elif(pitch = 0):
-            print("UUV stabilisé")
-        elif(pitch > 0):
-            print("UUV en montée")
+    def pitch(self, pitch:int) -> None:
+        """
+        Permet de définir l'assiette UUV
+        Une exception est levée si UUV arreté
+        Confirme l'assiette si réussite
+        """
+        if(self.__state == False):
+            raise Exception("UUV stoppé")
         else:
-            print("Comportement indéfini")
+            if(pitch < 0):
+                print("UUV en descente")
+            elif(pitch == 0):
+                print("UUV stabilisé")
+            elif(pitch > 0):
+                print("UUV en montée")
+            else:
+                print("Comportement indéfini")
 
 class UGV(UnmannedVehicle):
     """Unmanned Ground Vehicle"""
@@ -59,8 +74,8 @@ class UGV(UnmannedVehicle):
 if __name__ == "__main__":
         
     uav = UAV()
-    uav.do_something_interesting()
-    uav.do_something_aerial_specific()
+    uav.startup()
+    uav.stop()
 
     ugv = UGV()
     ugv.do_something_interesting()
