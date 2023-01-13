@@ -3,7 +3,7 @@ Adrien
 Rev-A (09/01/2023) : Initial dev
 """
 
-class Human():   
+class Human():
     """
     Documentation de l'humain
     """
@@ -26,7 +26,7 @@ class Human():
     def food(self) -> list:
         return self.__food_in_instestine
 
-    def appendFood(self, foodstuff) -> None:
+    def __appendFood(self, foodstuff) -> None:
         if(len(self.__food_in_instestine) < self.__intestine_limit):
             self.__food_in_instestine.append(foodstuff)
         else:
@@ -45,9 +45,9 @@ class Human():
     def feed(self, foodstuff:str) -> None:
         if(type(foodstuff) == list):
             for f in foodstuff:
-                self.appendFood(f)
+                self.__appendFood(f)
         else:
-            self.appendFood(foodstuff)
+            self.__appendFood(foodstuff)
 
     def digest(self) -> None:
         self.__food_in_instestine.pop(0)
