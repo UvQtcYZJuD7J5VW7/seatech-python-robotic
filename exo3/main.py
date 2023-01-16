@@ -29,9 +29,27 @@ class UnmannedVehicle(metaclass=ABCMeta):
 class Aircraft():
 
     # Attributes
-    __
+    __fuel = "<undefined>"
+    __fuelLevel = 50
 
-class UAV(UnmannedVehicle):
+    # Property
+    @property
+    def fuel(self):
+        return self.__fuel
+
+    # Methods
+    def __str__(self):
+        return "Caractéristiques aéronautiques : fuelType = " + self.__fuel + " ; fuelLevel = " + str(self.__fuelLevel)
+    def setFuel(self, fuel:str):
+        if(fuel == "JETA1" or fuel == "100LL"):
+            self.__fuel = fuel
+        else:
+            raise Exception("/!\\ Carburant non aviation /!\\")
+
+    def refuel(self, fuelLevel:int):
+        self.__fuelLevel = fuelLevel
+
+class UAV(UnmannedVehicle, Aircraft):
     def startup(self):
         print("Pompe électrique ON")
         print("Plein riche")
@@ -68,6 +86,15 @@ if __name__ == "__main__":
     uav = UAV()
     uav.startupGeneric()
     uav.stopGeneric()
+    try:
+        uav.setFuel("Gasoil")
+    except Exception as e:
+        print(e)
+    try:
+        uav.setFuel("JETA1")
+    except Exception as e:
+        print(e)
+    print(uav)
 
     print("\n")
 
