@@ -26,6 +26,11 @@ class UnmannedVehicle(metaclass=ABCMeta):
         self.__state = False
         self.stop()
 
+class Aircraft():
+
+    # Attributes
+    __
+
 class UAV(UnmannedVehicle):
     def startup(self):
         print("Pompe électrique ON")
