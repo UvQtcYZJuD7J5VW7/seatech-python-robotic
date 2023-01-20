@@ -1,11 +1,13 @@
-from controller import Robot
+from controller import *
 
 class WarriorRobot(Robot):
 
     # Methods
     def __init__(self):
-        self.__leftWheel = self.getMotor("wheel0_joint")
-        self.__rightWheel = self.getMotor("wheel1_joint")
+        self.leftWheel = Motor("wheel0_joint")
+        self.rightWheel = Motor("wheel1_joint")
+        self.centerWheel = Motor("wheel2_joint")
+        self.gyro = Gyro("gyro")
 
     def run(self):
-        pass
+        print(self.gyro.getValues())

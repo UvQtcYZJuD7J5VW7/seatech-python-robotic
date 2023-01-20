@@ -1,9 +1,8 @@
-from controller import Robot
 from WarriorRobot import *
 
-robot = Robot()
+robot = WarriorRobot()
 
 timestep = int(robot.getBasicTimeStep())
 
 while robot.step(timestep) != -1:
-    pass
+    robot.run()
