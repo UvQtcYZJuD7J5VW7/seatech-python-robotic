@@ -3,9 +3,10 @@
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
+from WarriorRobot import *
 
 # create the Robot instance.
-robot = Robot()
+robot = WarriorRobot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
@@ -27,6 +28,6 @@ while robot.step(timestep) != -1:
 
     # Enter here functions to send actuator commands, like:
     #  motor.setPosition(10.0)
-    pass
+    WarriorRobot.setMode("combat")
 
 # Enter here exit cleanup code.
