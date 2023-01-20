@@ -2,15 +2,10 @@ from controller import Robot
 
 class WarriorRobot(Robot):
 
-    # Attributes
-    __mode = "idle"
-
     # Methods
-    def setMode(self, mode:str):
-        """
-        combat = lance le robot en mode combat
-        """
-        self.__mode = mode
+    def __init__(self):
+        self.__leftWheel = self.getMotor("wheel0_joint")
+        self.__rightWheel = self.getMotor("wheel1_joint")
 
-    def moveForward(self):
+    def run(self):
         pass
