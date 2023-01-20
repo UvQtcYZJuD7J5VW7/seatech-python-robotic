@@ -21,19 +21,19 @@ class Engine():
 class Sensors():
     def __init__(self) -> None:
         super().__init__()
-        self.gyro = Gyro("gyro")
-        self.ir1 = DistanceSensor("ir1")
-        self.ir2 = DistanceSensor("ir2")
-        self.ir3 = DistanceSensor("ir3")
-        self.ir4 = DistanceSensor("ir4")
-        self.ir5 = DistanceSensor("ir5")
-        self.ir6 = DistanceSensor("ir6")
-        self.ir7 = DistanceSensor("ir7")
-        self.ir8 = DistanceSensor("ir8")
-        self.ir9 = DistanceSensor("ir9")
+        self.__gyro = Gyro("gyro")
+        self.__ir1 = DistanceSensor("ir1")
+        self.__ir2 = DistanceSensor("ir2")
+        self.__ir3 = DistanceSensor("ir3")
+        self.__ir4 = DistanceSensor("ir4")
+        self.__ir5 = DistanceSensor("ir5")
+        self.__ir6 = DistanceSensor("ir6")
+        self.__ir7 = DistanceSensor("ir7")
+        self.__ir8 = DistanceSensor("ir8")
+        self.__ir9 = DistanceSensor("ir9")
 
     def irScan(self):
-        
+        print(self.__ir1.getValue())
 
 class WarriorRobot(Robot):
 
@@ -52,4 +52,4 @@ class WarriorRobot(Robot):
             i += 1
 
     def scan(self):
-        self.sensors
+        self.sensors.irScan()
