@@ -22,18 +22,18 @@ class Sensors():
     def __init__(self) -> None:
         super().__init__()
         self.__gyro = Gyro("gyro")
-        self.__ir1 = DistanceSensor("ir1")
-        self.__ir2 = DistanceSensor("ir2")
-        self.__ir3 = DistanceSensor("ir3")
-        self.__ir4 = DistanceSensor("ir4")
-        self.__ir5 = DistanceSensor("ir5")
-        self.__ir6 = DistanceSensor("ir6")
-        self.__ir7 = DistanceSensor("ir7")
-        self.__ir8 = DistanceSensor("ir8")
-        self.__ir9 = DistanceSensor("ir9")
+        self.__sonar1 = DistanceSensor("base_sonar_01_link")
+        self.__sonar2 = DistanceSensor("base_sonar_02_link")
+        self.__sonar3 = DistanceSensor("base_sonar_03_link")
 
-    def irScan(self):
-        print(self.__ir1.getValue())
+    def gyroScan(self):
+        print(self.__gyro.getValues())
+
+    def sonarScan(self):
+        print(self.__sonar1.getValue())
+        print(self.__sonar2.getValue())
+        print(self.__sonar3.getValue())
+        print("tr")
 
 class WarriorRobot(Robot):
 
@@ -52,4 +52,4 @@ class WarriorRobot(Robot):
             i += 1
 
     def scan(self):
-        self.sensors.irScan()
+        self.sensors.sonarScan()
