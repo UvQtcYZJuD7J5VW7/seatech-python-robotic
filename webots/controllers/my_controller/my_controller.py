@@ -7,4 +7,4 @@ robot = WarriorRobot()
 timestep = int(robot.getBasicTimeStep())
 
 while robot.step(timestep) != -1:
-    robot.run()
+    robot.scan()
