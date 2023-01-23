@@ -30,10 +30,9 @@ class Sensors():
 
     def enable(self, timestep:int):
         self.__lidarFront.enable(timestep)
-        
     
     def lidarScan(self):
-        print("{}".format(self.__lidarFront.getRangeImage()[0:5]))
+        print("{}".format(self.__lidarFront.getRangeImage()))
 
 class WarriorRobot(Robot):
 
