@@ -23,22 +23,22 @@ class Engine():
         self.rightWheel(velocity)
 
 class Sensors():
-    def __init__(self) -> None:
-        super().__init__()
-        self.__lidarFront = Lidar("front-lidar")
+    def __init__(self, samplingPeriod) -> None:
+        self.__lidarFront = Lidar("front-lidar", samplingPeriod)
         # self.__lidarFront.fov = 1.5
         self.__lidarFront.enablePointCloud()
-
-    def enable(self, timestep:int):
-        self.__lidarFront.enable(timestep)
+        self.__radarFront = Radar("radar", samplingPeriod)
     
     def lidarScan(self):
         list = self.__lidarFront.getRangeImage()
         # for i in range(len(list)-1):
         #     if(isinf(list[i]) == True):
         #         list.pop(i)
-        # print(max(list))
+        # # print(max(list))
         print("{}".format(list))
+
+    def getTargets(self):
+        return self.__radarFront.getTargets()
 
 class WarriorRobot(Robot):
 
@@ -46,15 +46,9 @@ class WarriorRobot(Robot):
     def __init__(self):
         super().__init__()
         self.engine = Engine()
-        self.sensors = Sensors()
+        self.sensors = Sensors(int(self.getBasicTimeStep()))
 
     def run(self):
-        while(i<500000000):
-            self.engine.moveForward(5)
-            i += 1
-        while(i<250):
-            self.engine.moveLeft(2)
-            i += 1
-
-    def scan(self):
-        self.sensors.lidarScan()
+        if(self.sensors.getTargets() != []):
+            print("On bouge")
+        self.sensors.getTargets()

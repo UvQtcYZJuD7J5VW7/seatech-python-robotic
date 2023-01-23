@@ -6,5 +6,5 @@ maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
 textFiles: 0 "controllers/my_controller/my_controller.py"
-globalOptionalRendering: LidarRaysPaths::CameraFrustums::DistanceSensorRays::LightSensorRays::LidarPointClouds
+globalOptionalRendering: LidarRaysPaths::CameraFrustums::DistanceSensorRays::LightSensorRays::LidarPointClouds::RadarFrustums
 consoles: Console:All:All
