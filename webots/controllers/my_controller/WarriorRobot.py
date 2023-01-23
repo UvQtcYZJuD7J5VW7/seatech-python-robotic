@@ -3,14 +3,16 @@ from math import *
 
 class Engine():
     def __init__(self) -> None:
-        super().__init__()
-        self.leftWheel = Motor("wheel0_joint")
+        self.leftWheel = Motor("back_left_wheel_joint")
         self.leftWheel.setPosition(float("inf"))
         self.leftWheel.setVelocity(0.0)
-        self.rightWheel = Motor("wheel1_joint")
+        self.rightWheel = Motor("back_right_wheel_joint")
         self.rightWheel.setPosition(float("inf"))
         self.rightWheel.setVelocity(0.0)
-        self.centerWheel = Motor("wheel2_joint")
+        self.centerWheel = Motor("front_left_wheel_joint")
+        self.centerWheel.setPosition(float("inf"))
+        self.centerWheel.setVelocity(0.0)
+        self.centerWheel = Motor("front_right_wheel_joint")
         self.centerWheel.setPosition(float("inf"))
         self.centerWheel.setVelocity(0.0)
 
