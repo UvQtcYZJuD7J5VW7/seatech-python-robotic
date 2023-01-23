@@ -1,4 +1,5 @@
 from controller import *
+from math import *
 
 class Engine():
     def __init__(self) -> None:
@@ -32,7 +33,12 @@ class Sensors():
         self.__lidarFront.enable(timestep)
     
     def lidarScan(self):
-        print("{}".format(self.__lidarFront.getRangeImage()))
+        list = self.__lidarFront.getRangeImage()
+        # for i in range(len(list)-1):
+        #     if(isinf(list[i]) == True):
+        #         list.pop(i)
+        # print(max(list))
+        print("{}".format(list))
 
 class WarriorRobot(Robot):
 
