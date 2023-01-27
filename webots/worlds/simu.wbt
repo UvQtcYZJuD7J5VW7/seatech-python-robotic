@@ -9,13 +9,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "../protos/Robotino3.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/rec/fabtino/protos/Fabtino.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/devices/slamtec/protos/RpLidarA2.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/fire_extinguisher/protos/FireExtinguisher.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/traffic/protos/TrafficCone.proto"
 
 WorldInfo {
 }
 Viewpoint {
   orientation -0.21722413104944524 0.34570389622801956 0.912854037085108 1.3155668707816954
-  position -2.227443918292416 -7.59069037988332 8.519223349738382
+  position -3.337322874920435 -8.024307715631283 7.114682902393397
 }
 TexturedBackground {
   texture "noon_stormy_empty"
@@ -71,41 +71,16 @@ SolidBox {
   }
 }
 Robotino3 {
-  hidden translation_1 0 0 0
-  hidden rotation_1 0 1 0 2.4470134128574115
-  hidden translation_2 0 0 0
-  hidden rotation_2 0 -1 0 4.652161192459305
-  hidden translation_3 0 0 0
-  hidden rotation_3 0 1 0 4.959360254378469
   translation 2.034930925386045 0.3209382272971362 2.0477084695453946
   rotation 5.783813313668686e-06 -5.8842907325933936e-06 0.9999999999659615 1.5784613545508548
   model "WarriorRobot"
   controller "<none>"
 }
+TrafficCone {
+  translation 1.51 2.09 2.18
+}
 Fabtino {
-  hidden position_0_0 2.9507388037093103e-06
-  hidden position_0_1 4.262771245445233e-06
-  hidden position_0_2 5.149831900905114e-06
-  hidden position_0_3 1.0957758791218101e-06
-  hidden linearVelocity_0 -1.7486811678090402e-07 -2.7846378322500378e-08 8.067783318183846e-08
-  hidden angularVelocity_0 4.5025445176565574e-08 1.617959011155628e-06 2.794088446253307e-07
-  hidden translation_1 0.2850625395766403 -0.2358179385720064 0.0356394269827341
-  hidden rotation_1 -0.9306595376474542 -0.36586706104787536 0.003757476016852516 7.068743985712148e-06
-  hidden linearVelocity_1 1.5172640696519471e-06 1.097354217649152e-08 -4.773932422924236e-07
-  hidden angularVelocity_1 3.8400669857013534e-08 2.415217792497204e-05 3.150960964595266e-07
-  hidden translation_2 -0.2848944275104364 -0.23805691142816043 0.035655537124855884
-  hidden rotation_2 -0.9675582686310792 0.2526034461008085 0.004742976030341817 8.145144273615553e-06
-  hidden linearVelocity_2 -2.069206309630841e-06 -4.171719248131489e-08 4.262735043828057e-07
-  hidden angularVelocity_2 4.930168683493505e-08 -2.9121574431372702e-05 2.464416781840046e-07
-  hidden translation_3 0.2848985167603955 0.23805705433993288 0.035515669776352475
-  hidden rotation_3 0.8476380392911356 0.5305645190556403 -0.0033234719701438135 6.818482190286052e-06
-  hidden linearVelocity_3 1.275736055885924e-06 2.8151581649504105e-08 -4.5500088286472345e-07
-  hidden angularVelocity_3 4.0523857453747454e-08 2.127715360664023e-05 2.567744701867673e-07
-  hidden translation_4 -0.2850584441718023 0.2358180754008973 0.03577112772074056
-  hidden rotation_4 0.9989292115598534 -0.04599796758989374 -0.0049615793865373636 8.849684091199286e-06
-  hidden linearVelocity_4 -2.3768983264316244e-06 -1.521114920916046e-08 4.489347662349305e-07
-  hidden angularVelocity_4 5.1761242062913426e-08 -3.2861703586905584e-05 3.034601247261516e-07
-  translation -0.6088771585650473 -0.41006718860178604 2.1041840553849376
+  translation -2.78887 -0.410067 2.08986
   rotation 0.032623391634069986 -0.9994677133437343 -6.558762818409894e-05 0.006573380794638292
   controller "my_controller"
   frontLidarSlot [
@@ -116,9 +91,6 @@ Fabtino {
     }
   ]
   bodySlot [
-    FireExtinguisher {
-      translation -0.21 0 0
-    }
     RpLidarA2 {
       name "front-lidar"
     }
