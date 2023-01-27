@@ -1,5 +1,11 @@
 from controller import *
 from math import *
+from time import sleep
+
+'''
+Code d'erreur :
+    1 : Proche bordure
+'''
 
 class Engine():
     def __init__(self) -> None:
@@ -28,6 +34,12 @@ class Engine():
         self.front_left_wheel.setVelocity(-velocity/2)
         self.front_right_wheel.setVelocity(velocity)
 
+    def stop(self):
+        self.back_left_wheel.setVelocity(0)
+        self.back_right_wheel.setVelocity(0)
+        self.front_left_wheel.setVelocity(0)
+        self.front_right_wheel.setVelocity(0)
+
 class Sensors():
     def __init__(self, samplingPeriod) -> None:
         self.__lidarFront = Lidar("front-lidar", samplingPeriod)
@@ -37,7 +49,9 @@ class Sensors():
         self.__radarFront.enable(samplingPeriod)
         self.__gps = GPS("gps")
         self.__gps.enable(samplingPeriod)
-    
+        self.compass = Compass("compass")
+        self.compass.enable(samplingPeriod)
+        
     def lidarScan(self):
         list = self.__lidarFront.getRangeImage()
         # for i in range(len(list)-1):
@@ -51,40 +65,52 @@ class Sensors():
 
     def checkCoordinates(self):
         # Settings
-        corner = {
-            "corner1": (-3.5, -3.5),
-            "corner2": (-3.5, 3.5),
-            "corner3": (3.5, -3.5),
-            "corner4": (3.5, 3.5),
-        }
         border = {
             "left": -3.5,
             "right": 3.5,
-            "front": 3.5,
-            "back": -3.5
+            "front": 3.1,
+            "back": -3.1
         }
-        limit = 0.3
+        limit = 0.6
 
         selfCoordinates = self.__gps.getValues()
         distances = []
-        for key in border.items():
+        for key, value in border.items():
             distances.append(abs(selfCoordinates[0]-border[key]))
             distances.append(abs(selfCoordinates[1]-border[key]))
         distance = min(distances)
         if(distance < limit):
-            print("Alerte")
-        print(distance)
+            return 1
+        return 0
 
 class WarriorRobot(Robot):
+    deviation = 30 # En degrés
+
     def __init__(self):
         super().__init__()
         self.engine = Engine()
         self.sensors = Sensors(int(self.getBasicTimeStep()))
 
+    def emergencyMove(self):
+        initialCap = self.sensors.compass.getValues()[0]
+        print(initialCap)
+        while (self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
+            self.engine.moveLeft(5)
+            print("On tourne")
+        self.engine.moveForward(5)
+        print("sdf")
+        # sleep(1)
+        self.engine.stop()
+
     def run(self):
         # if(self.sensors.getTargets() != 0):
         #     print("On bouge")
         # print(self.sensors.get_targets())
-        self.sensors.checkCoordinates()
+        if(self.sensors.checkCoordinates() == 1):
+            print("Emergency")
+            self.emergencyMove()
+        else:
+            self.engine.moveForward(5)
+        # sleep(1)
         # self.engine.moveForward(5)
-        # self.engine.moveForward(5)
+        # self.emergencyMove()
