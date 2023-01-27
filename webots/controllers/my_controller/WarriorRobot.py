@@ -97,19 +97,13 @@ class WarriorRobot(Robot):
         # initialCap = self.sensors.compass.getValues()[0]
         # if(self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
         #     self.engine.moveLeft(5)
-        self.engine.moveForward(-5)
-        self.engine.moveLeft(50)
+        self.engine.moveForward(-25)
+        self.engine.moveLeft(20)
 
     def run(self):
-        # if(self.sensors.getTargets() != 0):
-        #     print("On bouge")
-        # print(self.sensors.get_targets())
         print(self.sensors.isOutsideArea())
         if(self.sensors.isOutsideArea()):
             print("Emergency")
             self.emergencyMove()
         else:
             self.engine.moveForward(5)
-        # sleep(1)
-        # self.engine.moveForward(5)
-        # self.emergencyMove()
