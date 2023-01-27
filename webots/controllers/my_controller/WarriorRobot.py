@@ -51,6 +51,8 @@ class Sensors():
         self.__gps.enable(samplingPeriod)
         self.compass = Compass("compass")
         self.compass.enable(samplingPeriod)
+        self.gyro = Gyro("gyro")
+        self.gyro.enable(samplingPeriod)
         
     def lidarScan(self):
         list = self.__lidarFront.getRangeImage()
@@ -63,7 +65,7 @@ class Sensors():
     def get_targets(self):
         return self.__radarFront.getNumberOfTargets()
 
-    def checkCoordinates(self):
+    def isOutsideArea(self):
         # Settings
         border = {
             "left": -3.5,
@@ -80,8 +82,8 @@ class Sensors():
             distances.append(abs(selfCoordinates[1]-border[key]))
         distance = min(distances)
         if(distance < limit):
-            return 1
-        return 0
+            return True
+        return False
 
 class WarriorRobot(Robot):
     deviation = 30 # En degrés
@@ -92,21 +94,18 @@ class WarriorRobot(Robot):
         self.sensors = Sensors(int(self.getBasicTimeStep()))
 
     def emergencyMove(self):
-        initialCap = self.sensors.compass.getValues()[0]
-        print(initialCap)
-        while (self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
-            self.engine.moveLeft(5)
-            print("On tourne")
-        self.engine.moveForward(5)
-        print("sdf")
-        # sleep(1)
-        self.engine.stop()
+        # initialCap = self.sensors.compass.getValues()[0]
+        # if(self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
+        #     self.engine.moveLeft(5)
+        self.engine.moveForward(-5)
+        self.engine.moveLeft(50)
 
     def run(self):
         # if(self.sensors.getTargets() != 0):
         #     print("On bouge")
         # print(self.sensors.get_targets())
-        if(self.sensors.checkCoordinates() == 1):
+        print(self.sensors.isOutsideArea())
+        if(self.sensors.isOutsideArea()):
             print("Emergency")
             self.emergencyMove()
         else:
