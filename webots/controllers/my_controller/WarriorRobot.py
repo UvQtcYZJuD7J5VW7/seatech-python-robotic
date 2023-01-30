@@ -45,7 +45,7 @@ class Sensors():
         self.__lidarFront = Lidar("front-lidar", samplingPeriod)
         self.__lidarFront.enable(samplingPeriod)
         self.__lidarFront.enablePointCloud()
-        self.radarFront = Radar("radar2")
+        self.radarFront = Radar("radar")
         self.radarFront.enable(samplingPeriod)
         self.__gps = GPS("gps")
         self.__gps.enable(samplingPeriod)
@@ -92,23 +92,15 @@ class WarriorRobot(Robot):
         self.sensors = Sensors(int(self.getBasicTimeStep()))
 
     def emergencyMove(self):
-        # initialCap = self.sensors.compass.getValues()[0]
-        # if(self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
-        #     self.engine.moveLeft(5)
-        # self.engine.stop()
         self.engine.moveForward(-25)
-        # self.engine.moveLeft(20)
 
     def demo(self):
         self.engine.moveForward(randint(20, 50))
         self.engine.moveLeft(randint(5, 20))
 
     def run(self):
-        # print(self.sensors.isOutsideArea())
         if(self.sensors.isOutsideArea()):
             self.emergencyMove()
         else:
-            # print(self.sensors.lidarScan())
             self.demo()
-            print(self.sensors.radarFront.getNumberOfTargets())
-            print(type(self.sensors.radarFront.getNumberOfTargets()))
+            print("Cibles détectées par radar : " + str(self.sensors.radarFront.getNumberOfTargets()))
