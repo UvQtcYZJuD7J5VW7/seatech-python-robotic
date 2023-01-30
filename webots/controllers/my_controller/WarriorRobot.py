@@ -1,6 +1,6 @@
 from controller import *
 from math import *
-from time import sleep
+from random import randint
 
 '''
 Code d'erreur :
@@ -55,11 +55,10 @@ class Sensors():
         self.gyro.enable(samplingPeriod)
         
     def lidarScan(self):
-        lidarPoints = self.__lidarFront.getPointCloud();
-        print("x: " + str(lidarPoints[0].x) + " y: " + str(lidarPoints[0].y) + " z: " + str(lidarPoints[0].z))
-
-    def get_targets(self):
-        return self.__radarFront.getNumberOfTargets()
+        lidarPoints = self.__lidarFront.getPointCloud()
+        print(len(lidarPoints))
+        # for i in range(len(lidarPoints)):
+        #     print("x: " + str(lidarPoints[i].x) + " y: " + str(lidarPoints[i].y) + " z: " + str(lidarPoints[i].z))
 
     def isOutsideArea(self):
         # Settings
@@ -97,11 +96,15 @@ class WarriorRobot(Robot):
         self.engine.moveForward(-25)
         # self.engine.moveLeft(20)
 
+    def demo(self):
+        self.engine.moveForward(randint(20, 50))
+        self.engine.moveLeft(randint(5, 20))
+
     def run(self):
         # print(self.sensors.isOutsideArea())
         if(self.sensors.isOutsideArea()):
             self.emergencyMove()
         else:
             # self.engine.moveForward(5)
-            # print(self.sensors.lidarScan())
-            pass
+            print(self.sensors.lidarScan())
+            self.demo()
