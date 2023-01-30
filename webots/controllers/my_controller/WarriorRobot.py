@@ -42,26 +42,17 @@ class Engine():
 
 class Sensors():
     def __init__(self, samplingPeriod) -> None:
-        self.__lidarFront = Lidar("front-lidar", samplingPeriod)
-        self.__lidarFront.enable(samplingPeriod)
-        self.__lidarFront.enablePointCloud()
-        self.radarFront = Radar("radar")
-        self.radarFront.enable(samplingPeriod)
+        self.lidarFront = Lidar("lidar", samplingPeriod)
+        self.lidarFront.enable(samplingPeriod)
+        self.lidarFront.enablePointCloud()
+        # self.radarFront = Radar("radar")
+        # self.radarFront.enable(samplingPeriod)
         self.__gps = GPS("gps")
         self.__gps.enable(samplingPeriod)
         self.compass = Compass("compass")
         self.compass.enable(samplingPeriod)
         self.gyro = Gyro("gyro")
         self.gyro.enable(samplingPeriod)
-        
-    def lidarScan(self):
-        lidarPoints = self.__lidarFront.getPointCloud()
-        print(self.__lidarFront.getNumberOfPoints())
-        for i in range(self.__lidarFront.getNumberOfPoints()):
-            if(lidarPoints[i].x == float("inf") or lidarPoints[i].y == float("inf") or lidarPoints[i].z == float("inf")):
-                lidarPoints.pop(i)
-                # print("x: " + str(lidarPoints[i].x) + " y: " + str(lidarPoints[i].y) + " z: " + str(lidarPoints[i].z))
-        print(len(lidarPoints))
 
     def isOutsideArea(self):
         # Settings
@@ -102,6 +93,11 @@ class WarriorRobot(Robot):
         if(self.sensors.isOutsideArea()):
             self.emergencyMove()
         else:
-            self.demo()
-            print("Cibles détectées par radar : " + str(self.sensors.radarFront.getNumberOfTargets()))
-            print("Cibles détectées par radar : " + str(Radar.getNumberOfTargets(self.sensors.radarFront)))
+            # self.demo()
+            # print("Cibles détectées par radar : " + str(self.sensors.radarFront.getNumberOfTargets()))
+            lidarPoints = self.sensors.lidarFront.getPointCloud()
+            nb = self.sensors.lidarFront.getNumberOfPoints()
+            if(lidarPoints[int(nb/2)].x == float("inf") or lidarPoints[int(nb/2)].y == float("inf") or lidarPoints[int(nb/2)].z == float("inf")):
+                self.engine.moveForward(15)
+            else:
+                self.engine.moveLeft(15)
