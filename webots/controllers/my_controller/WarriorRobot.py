@@ -104,4 +104,4 @@ class WarriorRobot(Robot):
                 self.engine.moveLeft(10)
             else:
                 self.engine.moveForward(50)
-            print("x: " + str(lidarPoints[int(nb/2)].x) + " y: " + str(lidarPoints[int(nb/2)].y))
+            #print("x: " + str(lidarPoints[int(nb/2)].x) + " y: " + str(lidarPoints[int(nb/2)].y))
