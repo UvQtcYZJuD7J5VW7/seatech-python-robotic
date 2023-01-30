@@ -8,4 +8,3 @@ orthographicViewHeight: 1
 textFiles: -1
 globalOptionalRendering: LidarRaysPaths::CameraFrustums::DistanceSensorRays::LightSensorRays::LidarPointClouds::RadarFrustums::LightPositions
 consoles: Console:All:All
-renderingDevicePerspectives: Fabtino:range-finder;1;1;0;0

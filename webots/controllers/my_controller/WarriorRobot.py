@@ -62,7 +62,7 @@ class Sensors():
             "front": 3.1,
             "back": -3.1
         }
-        limit = 0.6
+        limit = 0.5
 
         selfCoordinates = self.__gps.getValues()
         distances = []
@@ -83,7 +83,7 @@ class WarriorRobot(Robot):
         self.sensors = Sensors(int(self.getBasicTimeStep()))
 
     def emergencyMove(self):
-        self.engine.moveForward(-25)
+        self.engine.moveForward(-50)
 
     def demo(self):
         self.engine.moveForward(randint(20, 50))
@@ -97,7 +97,11 @@ class WarriorRobot(Robot):
             # print("Cibles détectées par radar : " + str(self.sensors.radarFront.getNumberOfTargets()))
             lidarPoints = self.sensors.lidarFront.getPointCloud()
             nb = self.sensors.lidarFront.getNumberOfPoints()
-            if(lidarPoints[int(nb/2)].x == float("inf") or lidarPoints[int(nb/2)].y == float("inf") or lidarPoints[int(nb/2)].z == float("inf")):
-                self.engine.moveForward(15)
+            #target = self.sensors.lidarFront.getRangeImage()[nb/2-10:nb/2+10]
+            
+            #if(target.count(float("inf")) < float("inf")):
+            if(lidarPoints[int(nb/2)].x == float("inf") or lidarPoints[int(nb/2)].y == float("inf")):
+                self.engine.moveLeft(10)
             else:
-                self.engine.moveLeft(15)
+                self.engine.moveForward(50)
+            print("x: " + str(lidarPoints[int(nb/2)].x) + " y: " + str(lidarPoints[int(nb/2)].y))
