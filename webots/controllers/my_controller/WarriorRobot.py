@@ -45,8 +45,8 @@ class Sensors():
         self.__lidarFront = Lidar("front-lidar", samplingPeriod)
         self.__lidarFront.enable(samplingPeriod)
         self.__lidarFront.enablePointCloud()
-        self.__radarFront = Radar("radar", samplingPeriod)
-        self.__radarFront.enable(samplingPeriod)
+        self.radarFront = Radar("radar2")
+        self.radarFront.enable(samplingPeriod)
         self.__gps = GPS("gps")
         self.__gps.enable(samplingPeriod)
         self.compass = Compass("compass")
@@ -56,9 +56,12 @@ class Sensors():
         
     def lidarScan(self):
         lidarPoints = self.__lidarFront.getPointCloud()
+        print(self.__lidarFront.getNumberOfPoints())
+        for i in range(self.__lidarFront.getNumberOfPoints()):
+            if(lidarPoints[i].x == float("inf") or lidarPoints[i].y == float("inf") or lidarPoints[i].z == float("inf")):
+                lidarPoints.pop(i)
+                # print("x: " + str(lidarPoints[i].x) + " y: " + str(lidarPoints[i].y) + " z: " + str(lidarPoints[i].z))
         print(len(lidarPoints))
-        # for i in range(len(lidarPoints)):
-        #     print("x: " + str(lidarPoints[i].x) + " y: " + str(lidarPoints[i].y) + " z: " + str(lidarPoints[i].z))
 
     def isOutsideArea(self):
         # Settings
@@ -105,6 +108,7 @@ class WarriorRobot(Robot):
         if(self.sensors.isOutsideArea()):
             self.emergencyMove()
         else:
-            # self.engine.moveForward(5)
-            print(self.sensors.lidarScan())
+            # print(self.sensors.lidarScan())
             self.demo()
+            print(self.sensors.radarFront.getNumberOfTargets())
+            print(type(self.sensors.radarFront.getNumberOfTargets()))
