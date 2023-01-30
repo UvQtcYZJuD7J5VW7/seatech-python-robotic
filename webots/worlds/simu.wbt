@@ -7,7 +7,6 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/toys/protos/RubberDuck.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/rec/fabtino/protos/Fabtino.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/CardboardBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/balls/protos/Ball.proto"
 EXTERNPROTO "../protos/HokuyoUrg04lxug01.proto"
 
@@ -70,24 +69,19 @@ SolidBox {
     metalness 0
   }
 }
-CardboardBox {
-  translation -1.19035 -0.904217 2.34604
-  rotation 0.000351160257315554 0.00029891383833456224 0.99999989366849 1.4028063221789029
-  mass 10
-}
 Fabtino {
-  hidden position_0_0 137.2788927021636
-  hidden position_0_1 137.27867259341812
-  hidden position_0_2 72.97054480252585
-  hidden position_0_3 72.97030732546429
-  hidden translation_1 0.28558834841919317 -0.23591960378453447 0.034557708005918834
-  hidden rotation_1 0 -1 0 0.9511840557872997
-  hidden translation_2 -0.2843741768919302 -0.23809641008355936 0.034977880375556505
-  hidden rotation_2 0 -1 0 0.9514041645327803
-  hidden translation_3 0.28545655609018805 0.23831987916374936 0.03537653061698582
-  hidden rotation_3 0 -1 0 2.4276788836291874
-  hidden translation_4 -0.2847922660457979 0.23602978239776456 0.03558221006476044
-  hidden rotation_4 0 -1 0 2.4279163606907477
+  hidden position_0_0 113.91737528603066
+  hidden position_0_1 113.91721458667271
+  hidden position_0_2 75.04077313740906
+  hidden position_0_3 75.04061019689627
+  hidden translation_1 0.2842707178525178 -0.23591960378453447 0.034879429111844634
+  hidden rotation_1 0 1 0 0.8200397567981057
+  hidden translation_2 -0.285150191017855 -0.23809641008355936 0.034647943269987644
+  hidden rotation_2 0 1 0 0.8198790574401571
+  hidden translation_3 0.28484543154780184 0.23831987916374936 0.034520720870277154
+  hidden rotation_3 0 -0.9999999999999999 0 0.35745054874597665
+  hidden translation_4 -0.2849042459467605 0.23602978239776456 0.03486532706098634
+  hidden rotation_4 0 -1 0 0.35761348925877046
   translation 2.14457 1.68238 2.1049
   rotation 0.00015982198624606703 -0.0003828479670529356 0.9999999139421797 2.33681
   controller "my_controller"
