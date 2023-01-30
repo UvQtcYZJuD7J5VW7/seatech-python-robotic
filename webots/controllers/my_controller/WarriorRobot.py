@@ -104,3 +104,4 @@ class WarriorRobot(Robot):
         else:
             self.demo()
             print("Cibles détectées par radar : " + str(self.sensors.radarFront.getNumberOfTargets()))
+            print("Cibles détectées par radar : " + str(Radar.getNumberOfTargets(self.sensors.radarFront)))
