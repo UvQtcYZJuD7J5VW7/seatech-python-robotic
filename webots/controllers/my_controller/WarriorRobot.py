@@ -43,7 +43,7 @@ class Engine():
 class Sensors():
     def __init__(self, samplingPeriod) -> None:
         self.__lidarFront = Lidar("front-lidar", samplingPeriod)
-        # self.__lidarFront.fov = 1.5
+        self.__lidarFront.enable(samplingPeriod)
         self.__lidarFront.enablePointCloud()
         self.__radarFront = Radar("radar", samplingPeriod)
         self.__radarFront.enable(samplingPeriod)
@@ -55,12 +55,8 @@ class Sensors():
         self.gyro.enable(samplingPeriod)
         
     def lidarScan(self):
-        list = self.__lidarFront.getRangeImage()
-        # for i in range(len(list)-1):
-        #     if(isinf(list[i]) == True):
-        #         list.pop(i)
-        # # print(max(list))
-        print("{}".format(list))
+        lidarPoints = self.__lidarFront.getPointCloud();
+        print("x: " + str(lidarPoints[0].x) + " y: " + str(lidarPoints[0].y) + " z: " + str(lidarPoints[0].z))
 
     def get_targets(self):
         return self.__radarFront.getNumberOfTargets()
@@ -97,13 +93,15 @@ class WarriorRobot(Robot):
         # initialCap = self.sensors.compass.getValues()[0]
         # if(self.sensors.compass.getValues()[0] - initialCap < self.deviation/100):
         #     self.engine.moveLeft(5)
+        # self.engine.stop()
         self.engine.moveForward(-25)
-        self.engine.moveLeft(20)
+        # self.engine.moveLeft(20)
 
     def run(self):
-        print(self.sensors.isOutsideArea())
+        # print(self.sensors.isOutsideArea())
         if(self.sensors.isOutsideArea()):
-            print("Emergency")
             self.emergencyMove()
         else:
-            self.engine.moveForward(5)
+            # self.engine.moveForward(5)
+            # print(self.sensors.lidarScan())
+            pass
